@@ -1,0 +1,10 @@
+Istruzioni per il corretto uso del codice HGA.py
+Per eseguire correttamente il programma vi è la necessità di scaricare le librerie utilizzate per rappresetnare il grafo e le funzioni dei costi tramite questo comando: pip install numpy matplotlib networkx .
+Il programma prende in input determinati parametri in base alla istanza del problema che si vuole analizzare esempio:
+- python HGA.py <directory> Grid <first_dimension_graph>: per i file del tipo Grid 5/7/9
+- python HGA.py <directory> Rand <num_nodes> <num_edges>: per i file del tipo Rand (100_841)/(100_3069)/(200_3184)  
+
+In questa directory sono presenti anche 3 cartelle:
+    - istanze: nella quale sono presenti i file delle istanze dei problemi che vengono passati input al programma
+    - res: in cui sono presenti le risorese usate nel dile relazione_AI.tex
+    - risultati: in cui sono presenti le immagini dei risultati ottenuti sia i grafici di convergenza dell'algoritmo sia le tabelle con le info dell'andamento dell'algoritmo incluso i parametri usati

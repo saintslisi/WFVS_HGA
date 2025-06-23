@@ -8,3 +8,152 @@ In questa directory sono presenti anche 3 cartelle:
     - istanze: nella quale sono presenti i file delle istanze dei problemi che vengono passati input al programma
     - res: in cui sono presenti le risorese usate nel dile relazione_AI.tex
     - risultati: in cui sono presenti le immagini dei risultati ottenuti sia i grafici di convergenza dell'algoritmo sia le tabelle con le info dell'andamento dell'algoritmo incluso i parametri usati
+
+# AntiTheftBoat
+## Projct for iot subject of L-31
+
+
+# How to use:
+The project is meant to run in localhost and uses TTN as stack for the LoRaWAN devices.
+you will need to create an env file on the backend folder containing the following:
+
+```
+cd BoatManager/backend
+touch .env
+```
+
+* APIKEY  = "YOUR_TTN_API_KEY"
+* MQTT_APIKEY = "YOUR_TTN_MQTT_API_KEY"
+* APPLICATION_ID = "YOUR_APPLICATION_ID"
+* MQTT_TENANT = "TTN_MQTT_TENANT"
+* MQTT_BROKER = "TTN_MQTT_BROKER"
+* MQTT_PORT = MQTT_PORT 
+
+
+## Install the dependecies for the ReactApp 
+
+```
+cd BoatManager/front-end
+
+npm install
+
+```
+
+## install python dependencies
+
+```
+cd BoatManager
+
+pip install -r requirements.txt
+
+```
+
+## Run the main.py script
+
+```
+cd BoatManager/backend
+python3 main.py
+
+```
+
+## Run the app 
+
+```
+cd BoatManager/front-end
+npm run dev 
+
+```
+## Flash the Iot Board  
+You can open the project itself with the platformio extension on vscode.
+
+be sure to change line 78 of the main.cpp file of the porject 
+
+```
+http.begin("http://IP_OF_YOUR_BACKEND/register");  // URL del server
+```
+
+flash the device through terminal after modifing the platformio.ini with vscode extension or your Text editor of choice
+
+```
+cd Boat/Barca
+pio run -t upload
+
+```
+
+
+
+# Anti-Thief-Boat
+## Project Structure
+
+```text
+BoatManager/
+├── backend/
+│   ├── main.py
+│   ├── .env
+│   └── ...
+├── front-end/
+│   ├── src/
+│   └── ...
+├── requirements.txt
+Boat/
+└── Barca/
+    ├── src/
+    └── platformio.ini
+```
+
+## Features
+
+- Anomaly detection via embedded neural network classifier  
+- Real-time direction and speed monitoring  
+- Low-power sensors with sleep-mode capabilities  
+- Secure LoRaWAN communication via The Things Network  
+- Web interface for device management and position tracking  
+- Remote arm/disarm through TTN downlink  
+
+---
+
+## Extension Board Schema
+
+The hardware setup of the AntiTheftBoat system includes the following components connected to an Arduino Nano ESP32:
+
+- **GY-521 (MPU-6050 Gyroscope/Accelerometer)**
+  - Communication: I2C
+  - VCC → 3.3V
+  - GND → GND
+  - SDA → GPIO21
+  - SCL → GPIO22
+
+- **GY-273 (HMC5883L Magnetometer)**
+  - Communication: I2C
+  - VCC → 3.3V
+  - GND → GND
+  - SDA → GPIO21 (shared)
+  - SCL → GPIO22 (shared)
+
+- **YF-DN50 (Flow Sensor)**
+  - Communication: Digital pulse output
+  - VCC → 5V or regulated 3.3V
+  - GND → GND
+  - Output → GPIO (configured for interrupt-based pulse counting)
+
+- **LoRaWAN communication**
+  - Managed via a TTN-compatible gateway
+  - No wiring required on the board; data is transmitted over LoRa
+
+Each I2C device shares the same SDA and SCL lines to simplify wiring and reduce pin usage. Sensors are placed in sleep mode when inactive to minimize power consumption. The setup is designed for low power and reliable marine operation.
+
+---
+
+## Developed By
+
+- Damiano Vincenzo Coppola  
+- Angelo Spadola  
+- Enrico Sorbello  
+- Santi Lisi  
+
+---
+
+## License
+
+This project is licensed under the MIT License.  
+See the [LICENSE](./LICENSE) file for more information.
